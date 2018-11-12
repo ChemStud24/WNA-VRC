@@ -92,10 +92,10 @@ task usercontrol()
   while (true)
   {
     //drive
-			motor[rb] = vexRt[Ch2] + vexRt[Ch1];
-			motor[rf] = vexRt[Ch2] + vexRt[Ch1];
-			motor[lf] = vexRt[Ch2] - vexRt[Ch1];
-			motor[lb] = vexRt[Ch2] - vexRt[Ch1];
+			motor[rb] = vexRt[Ch1] + vexRt[Ch2];
+			motor[rf] = vexRt[Ch1] + vexRt[Ch2];
+			motor[lf] = vexRt[Ch1] - vexRt[Ch2];
+			motor[lb] = vexRt[Ch1] - vexRt[Ch2];
 
 
 		 //flipper
