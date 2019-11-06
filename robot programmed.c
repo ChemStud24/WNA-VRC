@@ -37,10 +37,10 @@ else if(vexRT[Btn8D]== 1)
 		motor[claw]=0;
 }
 //wheels
-  motor[topleft]=(-vexRT[Ch3]+vexRT[Ch1])*speedFactor;
-	motor[backleft]=(-vexRT[Ch3]+vexRT[Ch1])*speedFactor;
-	motor[topright]=vexRT[Ch3]+vexRT[Ch1];
-	motor[backright]=vexRT[Ch3]+ vexRT[Ch1];
+  motor[topleft]=(-vexRT[Ch3]+vexRT[Ch4])*speedFactor;
+	motor[backleft]=(-vexRT[Ch3]+vexRT[Ch4])*speedFactor;
+	motor[topright]=vexRT[Ch3]+vexRT[Ch4];
+	motor[backright]=vexRT[Ch3]+ vexRT[Ch4];
 
 	//catapult
 
