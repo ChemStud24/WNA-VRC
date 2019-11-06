@@ -2,9 +2,9 @@
 #pragma config(Motor,  port8,           lf,            tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port7,          	rb,            tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port6,           lb,            tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port5,           BFONE,   		 tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port5,           BFONE,   		 	 tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port4,           hook1,       	 tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port3,           BFTWO,   		 tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port3,           load,   		   tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port2,           hook2,       	 tmotorVex393_MC29, openLoop)
 
 /*---------------------------------------------------------------------------*/
@@ -60,65 +60,65 @@ void pre_auton()
 
 task autonomous()
 {
-	//Type A (Right Side)
-	//Driving Forward
-	motor[rb] = 127;
-	motor[rf] = 127;
-	motor[lb] = -127;
-	motor[lf] = -127;
-	wait1Msec(2000);
 
-	//Turning Around (The Tokyo Drift)
-	motor[rb] = -127;
-	motor[rf] = -127;
-	motor[lb] = -127;
-	motor[lf] = -127;
-	wait1Msec(900);
+	//Hooting Balons
+	motor[BFONE] = -100;
+	wait1Msec(1500);
+	motor[BFONE] = 0;
 
-	//Scaling the Ramp
-
-	motor[rb] = 127;
-	motor[rf] = 127;
-	motor[lb] = -127;
-	motor[lf] = -127;
-	wait1Msec(3500);
-
-	//Fin
-	motor[rb] = 0;
-	motor[rf] = 0;
-	motor[lb] = 0;
-	motor[lf] = 0;
-	wait1Msec(10000);
-
-	//Type B (Left Side)
-	//Driving Forward
-	motor[rb] = 127;
-	motor[rf] = 127;
-	motor[lb] = -127;
-	motor[lf] = -127;
-	wait1Msec(2000);
-
-	//Turning Around (The Tokyo Drift)
+	//Turning Around (The Tokyo Drift)R
 	motor[rb] = 127;
 	motor[rf] = 127;
 	motor[lb] = 127;
 	motor[lf] = 127;
-	wait1Msec(900);
+	wait1Msec(1100);
 
-	//Scaling the Ramp
+	//Moving Backwards
+	motor[rb] = -127;
+	motor[rf] = -127;
+	motor[lb] = 127;
+	motor[lf] = 127;
+	wait1Msec(1000);
 
-	motor[rb] = 127;
-	motor[rf] = 127;
+	//Turning Around (The Tokyo Drift)R
+	motor[rb] = -127;
+	motor[rf] = -127;
 	motor[lb] = -127;
 	motor[lf] = -127;
-	wait1Msec(3500);
+	wait1Msec(500);
+
+	//Scaling the Ramp
+	motor[rb] = -127;
+	motor[rf] = -127;
+	motor[lb] = 127;
+	motor[lf] = 127;
+	wait1Msec(1500);
+	motor[rb] = 0;
+	motor[rf] = 0;
+	motor[lb] = 0;
+	motor[lf] = 0;
+	wait1Msec(1);
+	motor[hook1] = -90;
+	motor[hook2] =  90;
+	wait1Msec(500);
+	motor[rb] = -127;
+	motor[rf] = -127;
+	motor[lb] = 127;
+	motor[lf] = 127;
+	wait1Msec(2300);
 
 	//Fin
 	motor[rb] = 0;
 	motor[rf] = 0;
 	motor[lb] = 0;
 	motor[lf] = 0;
-	wait1Msec(10000);
+	wait1Msec(1000);
+	motor[hook1] = 90;
+	motor[hook2] = -90;
+	wait1Msec(500);
+
+
+
 
 }
 
@@ -143,138 +143,81 @@ task autonomous()
 
 task usercontrol()
 {
-	// User control code here, inside the loop
+//User control code here, inside the loop
 
-	while (true)
+	//while (true)
 	{
-		//drive
+		//Drive
 		motor[rb] = vexRT[Ch2];
 		motor[rf] = vexRT[Ch2];
 		motor[lb] = -vexRT[Ch3];
 		motor[lf] = -vexRT[Ch3];
 
-		//BFG2
-
-		if (vexRT(Btn8L) == 1 && vexRT(Btn8D)==0)
+		//Load
+		if (vexRT(Btn7U) == 1 && vexRT(Btn7D)==0)
 		{
-			motor[BFONE] = -100;
-			motor[BFTWO] = 100;
-			;
+			motor[load] = -100;
 		}
-		else if	(vexRT[Btn8D] == 1 && vexRT(Btn8L) == 0)
+		else if	(vexRT[Btn7D] == 1 && vexRT(Btn7U) == 0)
 		{
-			motor[BFONE] = 100;
-			motor[BFTWO] = -100;
+			motor[load] = 0;
 		}
 		else
 		{
-			motor[BFONE] = 0;
-			motor[BFTWO] = 0;
+			motor[load] = 0;
 
-			}
-
-
-			//Hook
+			//Guns
 			if (vexRT(Btn5U) == 1 && vexRT(Btn5D)==0)
 			{
-				motor[hook1] = -40;
-				motor[hook2] = 40;
+				motor[BFONE] = -100;
 			}
 			else if	(vexRT[Btn5D] == 1 && vexRT(Btn5U) == 0)
 			{
-				motor[hook1] = 40;
-				motor[hook2] = -40;
+				motor[BFONE] = 100;
 			}
 			else
 			{
-				motor[hook1] = 0;
-				motor[hook2] = 0;
+				motor[BFONE] = 0;
+				motor[BFONE] = 0;
 
-				//Hook (Fast Edition)
-				if (vexRT(Btn7D) == 1 && vexRT(Btn7L)==0)
+				//Hook (Slow Edition)
+				if (vexRT(Btn6U) == 1 && vexRT(Btn6D)==0)
 				{
-					motor[hook1] = -120;
-					motor[hook2] =  120;
+					motor[hook1] = -90;
+					motor[hook2] =  90;
 				}
-				else if	(vexRT[Btn7L] == 1 && vexRT(Btn7D) == 0)
+				else if	(vexRT[Btn6D] == 1 && vexRT(Btn6U) == 0)
 				{
-					motor[hook1] = 127;
-					motor[hook2] = -127;
+					motor[hook1] = 90;
+					motor[hook2] = -90;
 				}
 				else
 				{
 					motor[hook1] = 0;
 					motor[hook2] = 0;
 
-
 					//Null Space (Testing Grounds)
-					if (vexRT(Btn6U) == 1 && vexRT(Btn6D)==0)
-				{
-					//Running in the 90's (Clear)
-					motor[rb] = 127;
-					motor[rf] = 127;
-					motor[lb] = -127;
-					motor[lf] = -127;
-					wait1Msec(3000);
+					if (vexRT(Btn8D) == 1 && vexRT(Btn8U)==0)
+					{//Auto Version 2 (Right Side Blue)
 
-					//Awkwardly Walking Backwards in the 90's (Clear)
-					motor[rb] = -127;
-					motor[rf] = -127;
-					motor[lb] = 127;
-					motor[lf] = 127;
-					wait1Msec(3000);
-
-					//Mr.Right (Clear)
-					motor[rb] = -127;
-					motor[rf] = -127;
-					motor[lb] = -127;
-					motor[lf] = -127;
-					wait1Msec(900);
-
-					//It's a new way i like to be
-					motor[rb] = 127;
-					motor[rf] = 127;
-					motor[lb] = -127;
-					motor[lf] = -127;
-					wait1Msec(1600);
-
-					//Dr. Left
-					motor[rb] = 127;
-					motor[rf] = 127;
-					motor[lb] = 127;
-					motor[lf] = 127;
-					wait1Msec(900);
-
-					//Cap Positioning (Calibrate)
-					motor[hook1] = -40;
-					motor[hook2] = 40;
-					wait1Msec(200);
-					motor[rb] = 127;
-					motor[rf] = 127;
-					motor[lb] = -127;
-					motor[lf] = -127;
-					wait1Msec(400);
-
-					//Flip (Calibrate)
-					motor[hook1] = 80;
-					motor[hook2] = -80;
-					wait1Msec(200);
+						motor[rb] = 115;
+						motor[rf] = 115;
+						wait1Msec(2000);
+						motor[rb] = 0;
+						motor[rf] = 0;
+						wait1Msec(1);
 
 
 
+					}
 				}
 
-
-				}
-				{
-
-
-				}
 			}
-		}
 
+		}
 	}
 
+}
 
 
 
@@ -282,6 +225,7 @@ task usercontrol()
 
 
 
+/*
 //"According to all known laws of aviation, there is no way that a bee should be able to fly.
 //Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway.
 //Because bees don't care what humans think is impossible"
@@ -290,6 +234,61 @@ task usercontrol()
 
 
 
+//Hooting Balons
+motor[BFONE] = -100;
+wait1Msec(1500);
+motor[BFONE] = 0;
+
+//Turning Around (The Tokyo Drift)R
+motor[rb] = 127;
+motor[rf] = 127;
+motor[lb] = 127;
+motor[lf] = 127;
+wait1Msec(1100);
+
+//Moving Backwards
+motor[rb] = -127;
+motor[rf] = -127;
+motor[lb] = 127;
+motor[lf] = 127;
+wait1Msec(1000);
+
+//Turning Around (The Tokyo Drift)R
+motor[rb] = -127;
+motor[rf] = -127;
+motor[lb] = -127;
+motor[lf] = -127;
+wait1Msec(500);
+
+//Scaling the Ramp
+motor[rb] = -127;
+motor[rf] = -127;
+motor[lb] = 127;
+motor[lf] = 127;
+wait1Msec(1500);
+motor[rb] = 0;
+motor[rf] = 0;
+motor[lb] = 0;
+motor[lf] = 0;
+wait1Msec(1);
+motor[hook1] = -90;
+motor[hook2] =  90;
+wait1Msec(500);
+motor[rb] = -127;
+motor[rf] = -127;
+motor[lb] = 127;
+motor[lf] = 127;
+wait1Msec(2300);
+
+//Fin
+motor[rb] = 0;
+motor[rf] = 0;
+motor[lb] = 0;
+motor[lf] = 0;
+wait1Msec(1000);
+motor[hook1] = 90;
+motor[hook2] = -90;
+wait1Msec(500);
 
 
 
@@ -297,8 +296,167 @@ task usercontrol()
 
 
 
+/* //Autonoumous Skills
 
+//Moving Forwards
+motor[rb] = 127;
+motor[rf] = 127;
+motor[lb] = -127;
+motor[lf] = -127;
+wait1Msec(2100);
 
+//Moving Backwards
+motor[rb] = -127;
+motor[rf] = -127;
+motor[lb] = 127;
+motor[lf] = 127;
+wait1Msec(1900);
+
+//Turning Around (The Tokyo Drift)R
+motor[rb] = -127;
+motor[rf] = -127;
+motor[lb] = -127;
+motor[lf] = -127;
+wait1Msec(600);
+
+//Moving Forwards (Calibrate)
+motor[rb] = 127;
+motor[rf] = 127;
+motor[lb] = -127;
+motor[lf] = -127;
+wait1Msec(2200);
+
+//Flippy Flippy Nice and Skippy (Calibrate)
+motor[hook1] = 80;
+motor[hook2] = -80;
+wait1Msec(200);
+
+//Moving Backwards (Calibrate)
+motor[rb] = -127;
+motor[rf] = -127;
+motor[lb] = 127;
+motor[lf] = 127;
+wait1Msec(1300);
+
+//Turning Around (The Tokyo Drift)L
+motor[rb] = 127;
+motor[rf] = 127;
+motor[lb] = 127;
+motor[lf] = 127;
+wait1Msec(600);
+
+//Moving Forwards (Calibrate)
+motor[rb] = 127;
+motor[rf] = 127;
+motor[lb] = -127;
+motor[lf] = -127;
+wait1Msec(300);
+
+//Flippy Flippy Nice and Skippy (Calibrate)
+motor[hook1] = 80;
+motor[hook2] = -80;
+wait1Msec(200);
+
+//Moving Backwards (Calibrate)
+motor[rb] = -127;
+motor[rf] = -127;
+motor[lb] = 127;
+motor[lf] = 127;
+wait1Msec(300);
+
+//Turning Around (The Tokyo Drift)R
+motor[rb] = -127;
+motor[rf] = -127;
+motor[lb] = -127;
+motor[lf] = -127;
+wait1Msec(300);
+
+//Moving Forwards (Calibrate)
+motor[rb] = 127;
+motor[rf] = 127;
+motor[lb] = -127;
+motor[lf] = -127;
+wait1Msec(300);
+
+//Turning Around (The Tokyo Drift)R
+motor[rb] = -127;
+motor[rf] = -127;
+motor[lb] = -127;
+motor[lf] = -127;
+wait1Msec(300);
+
+//Moving Forwards (Calibrate)
+motor[rb] = 127;
+motor[rf] = 127;
+motor[lb] = -127;
+motor[lf] = -127;
+wait1Msec(500);
+
+//Flippy Flippy Nice and Skippy (Calibrate)
+motor[hook1] = 80;
+motor[hook2] = -80;
+wait1Msec(200);
+
+//Moving Backwards (Calibrate)
+motor[rb] = -127;
+motor[rf] = -127;
+motor[lb] = 127;
+motor[lf] = 127;
+wait1Msec(500);
+
+//Turning Around (The Tokyo Drift)R
+motor[rb] = -127;
+motor[rf] = -127;
+motor[lb] = -127;
+motor[lf] = -127;
+wait1Msec(600);
+
+//Moving Forwards (Calibrate)
+motor[rb] = 127;
+motor[rf] = 127;
+motor[lb] = -127;
+motor[lf] = -127;
+wait1Msec(500);
+
+//Flippy Flippy Nice and Skippy (Calibrate)
+motor[hook1] = 80;
+motor[hook2] = -80;
+wait1Msec(200);
+
+//Moving Backwards (Calibrate)
+motor[rb] = -127;
+motor[rf] = -127;
+motor[lb] = 127;
+motor[lf] = 127;
+wait1Msec(200);
+
+//Turning Around (The Tokyo Drift)L
+motor[rb] = 127;
+motor[rf] = 127;
+motor[lb] = 127;
+motor[lf] = 127;
+wait1Msec(300);
+
+//Moving Forwards (Calibrate)
+motor[rb] = 127;
+motor[rf] = 127;
+motor[lb] = -127;
+motor[lf] = -127;
+wait1Msec(500);
+
+//Turning Around (The Tokyo Drift)L
+motor[rb] = 127;
+motor[rf] = 127;
+motor[lb] = 127;
+motor[lf] = 127;
+wait1Msec(300);
+
+//Moving Forwards (Calibrate)
+motor[rb] = 127;
+motor[rf] = 127;
+motor[lb] = -127;
+motor[lf] = -127;
+wait1Msec(400);
 
 
 
@@ -308,9 +466,7 @@ task usercontrol()
 
 
 
-
-
-
+//Archive:
 
 
 
