@@ -83,6 +83,33 @@ task autonomous()
 			// Insert user code here.
 			// ..........................................................................
 
+<<<<<<< HEAD
+task usercontrol()
+{
+  // User control code here, inside the loop
+
+  while (true)
+  {
+    //drive
+			motor[rb] = vexRt[Ch1] + vexRt[Ch2];
+			motor[rf] = vexRt[Ch1] + vexRt[Ch2];
+			motor[lf] = vexRt[Ch1] - vexRt[Ch2];
+			motor[lb] = vexRt[Ch1] - vexRt[Ch2];
+
+
+		 //flipper
+		  if (vexRT(Btn5U) == 1 && vexRT(Btn5D)==0)
+		  {
+			motor[leftFlipper] = -30;
+			motor[rightFlipper] = 30;
+			}
+			else if	(vexRT[Btn5D] == 1 && vexRT(Btn5U) == 0)
+			{
+				motor[leftFlipper] = 30;
+				motor[rightFlipper] = -30;
+			}
+			else
+=======
 			// Remove this function call once you have "real" code.
 			//AutonomousCodePlaceholderForTesting();
 
@@ -102,6 +129,7 @@ task autonomous()
 			// User control code here, inside the loop
 
 			while (true)
+>>>>>>> a252ff4fa4ec32e792f0e5927b259a424173b9e8
 			{
 				//drive
 				motor[rb] = vexRT[Ch2];
