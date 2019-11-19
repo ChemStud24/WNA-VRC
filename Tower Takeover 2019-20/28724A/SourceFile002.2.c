@@ -28,6 +28,8 @@ task main()
 		if (vexRT(Btn6U) == 1){
 			motor(motortwo) = 120;
 			motor(motorthree)= 120;
+			motor[leftmotor]= -63;
+	    motor[rightmotor]= 63;
 
 
 		}
@@ -35,7 +37,10 @@ task main()
 		else {
 			motor(motortwo) = 0;
 			motor(motorthree) = 0;
-// Programming of the Motors.
+			// Programming of the Motors.
+    	motor[leftmotor]= 0;
+	    motor[rightmotor]= 0;
+	    //clockwise and counter clockwise movement for motors left and right.
 
 		}
 
@@ -70,19 +75,16 @@ task main()
 }
 
 
-  task main()
 
 {
-	while (true)
-
 
 	motor[motorthree] = 55;
 	motor[motortwo] = 63;
 	wait1Msec(2000);
 
+
 	motor[motorthree] = -63;
 	motor[motortwo] = 63;
 	wait1Msec(700);
 	//right turn? reverse made.
-}
 }
