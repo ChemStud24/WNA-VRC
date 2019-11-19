@@ -42,18 +42,15 @@ task main()
 	    motor[rightmotor]= 0;
 	    //clockwise and counter clockwise movement for motors left and right.
 
-		}
 
-}
-{
 
 
     motor[motortwo] = -63;
     motor[motorthree] = 63;
     wait1Msec(2000);
     //point turn
-}
-{
+
+
 
 
     motor[motortwo] = 0;
@@ -61,7 +58,7 @@ task main()
     wait1Msec(2000);
     //Swing Turn
 
-}
+
 
 
     motor[motortwo] = 55;
@@ -72,11 +69,11 @@ task main()
     motor[motorthree] = 63;
     wait1Msec(700);
     //left turn
-}
 
 
 
-{
+
+
 
 	motor[motorthree] = 55;
 	motor[motortwo] = 63;
@@ -87,4 +84,6 @@ task main()
 	motor[motortwo] = 63;
 	wait1Msec(700);
 	//right turn? reverse made.
+}
+}
 }
