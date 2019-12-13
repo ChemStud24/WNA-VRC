@@ -68,12 +68,9 @@ task main()
     wait1Msec(700);
     //left turn
 }
-
-
-  task main()
-
+task main()
 {
-	while (true)
+	while (true){
 
 
 	motor[motorthree] = 55;
