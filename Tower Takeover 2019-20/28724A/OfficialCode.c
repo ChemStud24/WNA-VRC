@@ -58,8 +58,8 @@ task usercontrol()
 	while(true){
 		motor[rbmotor] = vexRT[Ch3];
 		motor[rfmotor] = vexRT[Ch3];
-		motor[lfmotor] = -vexRT[Ch2];
-		motor[lbmotor] = -vexRT[Ch2];
+		motor[lfmotor] = vexRT[Ch2];
+		motor[lbmotor] = vexRT[Ch2];
 		//Movement of Whole Robot
 
 		if(vexRT[Btn5U] == 1){
@@ -84,7 +84,7 @@ task usercontrol()
 		}
 
 		if (vexRT(Btn5D) == 1){
-			motor(rbdmotor) = -63;
+			motor(rbdmotor) = 63;
 			motor(lbdmotor) = 63;
 		} //Down
 		else {
@@ -93,7 +93,7 @@ task usercontrol()
 		}
 
 		if (vexRT(Btn6D) == 1){
-			motor(rbdmotor) = 63;
+			motor(rbdmotor) = -63;
 			motor(lbdmotor) = -63;
 		}
 		//Up
