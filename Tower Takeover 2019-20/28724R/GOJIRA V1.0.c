@@ -61,6 +61,36 @@ void pre_auton()
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
+void straight (float distance){
+	// Distance is number of revolutions of wheel
+	SensorValue[encodeleft] = 0;
+	SensorValue[encodeleft] = 0;
+
+	//start moving foreward
+	motor[lb] = -65;
+	motor[lf] = -65;
+	motor[rb] = 60;
+	motor[rf] = 60;
+
+	while (SensorValue[encodeleft] < (360*distance) || SensorValue[encoderight] < (360*distance)){
+		if (SensorValue[encodeleft] >= (360*distance)){
+			//stop left side
+			motor[lb] = 0;
+			motor[lf] = 0;
+		}
+		if (SensorValue[encoderight] >= (360*distance)){
+		}
+	}
+}
+
+void right() {
+
+}
+
+void left(){
+
+}
+
 task autonomous()
 {
 	/*
@@ -91,10 +121,23 @@ task autonomous()
 	motor[lows2] = 0;
 	wait1Msec(3000);
 
-*/
+	*/
+	float firstdistance = 5;
+	float seconddistance = 2;
+	float thirddistance = 2;
+	float fourthdisatnce = -2;
 
-
-
+	straight(firstdistance);
+	right();
+	//vaccum up
+	straight(seconddistance);
+	//stop vaccum
+	right();
+	straight (thirddistance);
+	//down vaccum
+	wait1Msec(1000);
+	//stop vaccum
+	straight(fourthdisatnce);
 
 }
 
@@ -122,7 +165,7 @@ task autonomous()
 task usercontrol()
 {
 	// User control code here, inside the loop
-	float speedfactor1=0.45;
+	float speedfactor1=1;
 	//float speedfactor2= 0.4;
 	while (true)
 	{
@@ -306,55 +349,55 @@ motor[lows2] = 0;
 
 V2
 //Forward
-	motor[lb] = -65;
-	motor[lf] = -65;
-	motor[rb] = 60;
-	motor[rf] = 60;
-	wait1Msec(800);
-	//right
-	motor[lb] = -60;
-	motor[lf] = -60;
-	motor[rb] = -60;
-	motor[rf] = -60;
-	wait1Msec(600);
-	//forward
-	motor[lb] = -67;
-	motor[lf] = -67;
-	motor[rb] = 62;
-	motor[rf] = 62;
-	wait1Msec(2200);
-	motor[lows1]=-127;
-	motor[lows2]=127;
-	//right
-	motor[lb] = -60;
-	motor[lf] = -60;
-	motor[rb] = -60;
-	motor[rf] = -60;
-	wait1Msec(800);
-	//forward
-	motor[lb] = -30;
-	motor[lf] = -30;
-	motor[rb] = 25;
-	motor[rf] = 25;
-	wait1Msec(150);
-	//drop
-	motor[lows1] = 127;
-	motor[lows2] = -127;
-	wait1Msec(4000);
-	//back
-	motor[lb] = 50;
-	motor[lf] = 50;
-	motor[rb] = -45;
-	motor[rf] = -45;
-	wait1Msec(225);
-	//stop
-	motor[lb] = 0;
-	motor[lf] = 0;
-	motor[rb] = 0;
-	motor[rf] = 0;
-	motor[lows1] = 0;
-	motor[lows2] = 0;
-	wait1Msec(3000);
+motor[lb] = -65;
+motor[lf] = -65;
+motor[rb] = 60;
+motor[rf] = 60;
+wait1Msec(800);
+//right
+motor[lb] = -60;
+motor[lf] = -60;
+motor[rb] = -60;
+motor[rf] = -60;
+wait1Msec(600);
+//forward
+motor[lb] = -67;
+motor[lf] = -67;
+motor[rb] = 62;
+motor[rf] = 62;
+wait1Msec(2200);
+motor[lows1]=-127;
+motor[lows2]=127;
+//right
+motor[lb] = -60;
+motor[lf] = -60;
+motor[rb] = -60;
+motor[rf] = -60;
+wait1Msec(800);
+//forward
+motor[lb] = -30;
+motor[lf] = -30;
+motor[rb] = 25;
+motor[rf] = 25;
+wait1Msec(150);
+//drop
+motor[lows1] = 127;
+motor[lows2] = -127;
+wait1Msec(4000);
+//back
+motor[lb] = 50;
+motor[lf] = 50;
+motor[rb] = -45;
+motor[rf] = -45;
+wait1Msec(225);
+//stop
+motor[lb] = 0;
+motor[lf] = 0;
+motor[rb] = 0;
+motor[rf] = 0;
+motor[lows1] = 0;
+motor[lows2] = 0;
+wait1Msec(3000);
 
 
 
