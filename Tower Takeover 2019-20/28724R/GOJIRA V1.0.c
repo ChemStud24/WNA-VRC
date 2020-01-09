@@ -79,12 +79,37 @@ void straight (float distance){
 			motor[lf] = 0;
 		}
 		if (SensorValue[encoderight] >= (360*distance)){
+			//stop right side
+			motor[rb] = 0;
+			motor[rf] = 0;
 		}
 	}
 }
 
 void right() {
+	int turndistance = 180;
+	// Distance is number of revolutions of wheel
+	SensorValue[encodeleft] = 0;
+	SensorValue[encodeleft] = 0;
 
+	//start moving right
+	motor[lb] = -65;
+	motor[lf] = -65;
+	motor[rb] = -60;
+	motor[rf] = -60;
+
+	while (SensorValue[encodeleft] < (turndistance) || SensorValue[encoderight] < (-turndistance)){
+		if (SensorValue[encodeleft] >= (turndistance)){
+			//stop left side
+			motor[lb] = 0;
+			motor[lf] = 0;
+		}
+		if (SensorValue[encoderight] >= (-turndistance)){
+			//stop right side
+			motor[rb] = 0;
+			motor[rf] = 0;
+		}
+	}
 }
 
 void left(){
@@ -130,13 +155,21 @@ task autonomous()
 	straight(firstdistance);
 	right();
 	//vaccum up
+	motor[lows1] = -127;
+	motor[lows2] = 127;
 	straight(seconddistance);
 	//stop vaccum
+	motor[lows1] = 0;
+	motor[lows2] = 0;
 	right();
 	straight (thirddistance);
 	//down vaccum
+	motor[lows1] = 127;
+	motor[lows2] = -127;
 	wait1Msec(1000);
 	//stop vaccum
+	motor[lows1] = 0;
+	motor[lows2] = 0;
 	straight(fourthdisatnce);
 
 }
@@ -165,7 +198,7 @@ task autonomous()
 task usercontrol()
 {
 	// User control code here, inside the loop
-	float speedfactor1=1;
+	float speedfactor1=0.75;
 	//float speedfactor2= 0.4;
 	while (true)
 	{
