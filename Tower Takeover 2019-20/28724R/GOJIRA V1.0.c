@@ -1,5 +1,5 @@
-#pragma config(Sensor, dgtl9,  encoderight,   sensorQuadEncoder)
-#pragma config(Sensor, dgtl11, encodeleft,    sensorQuadEncoder)
+#pragma config(Sensor, dgtl1,  encodeleft,     sensorQuadEncoder)
+#pragma config(Sensor, dgtl11, encoderight,    sensorQuadEncoder)
 #pragma config(Motor,  port2,           lf,            tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           lb,            tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port4,           rb,            tmotorVex393_MC29, openLoop)
@@ -242,13 +242,52 @@ task usercontrol()
 				motor[high1] = 0;
 				motor[high2] = 0;
 
+				//Auton Tester
+				if (vexRT(Btn8U) == 1 && vexRT(Btn8D)==0)
+				{
+					float firstdistance = 5;
+					float seconddistance = 2;
+					float thirddistance = 2;
+					float fourthdisatnce = -2;
+
+					straight(firstdistance);
+					right();
+					//vaccum up
+					motor[lows1] = -127;
+					motor[lows2] = 127;
+					straight(seconddistance);
+					//stop vaccum
+					motor[lows1] = 0;
+					motor[lows2] = 0;
+					right();
+					straight (thirddistance);
+					//down vaccum
+					motor[lows1] = 127;
+					motor[lows2] = -127;
+					wait1Msec(1000);
+					//stop vaccum
+					motor[lows1] = 0;
+					motor[lows2] = 0;
+					straight(fourthdisatnce);
+				}
+
+				else
+				{
+					motor[lb] = 0;
+					motor[lf] = 0;
+					motor[rb] = 0;
+					motor[rf] = 0;
+					motor[lows1] = 0;
+					motor[lows2] = 0;
 
 
+}
+				}
 			}
 		}
+
 	}
 
-}
 
 
 
@@ -258,180 +297,179 @@ task usercontrol()
 
 
 
+	//Shrine of Wisdom and Fortune:
+	//
+	//							"Let them fight." -Dr. Ishiro Seriwaza
 
-//Shrine of Wisdom and Fortune:
-//
-//							"Let them fight." -Dr. Ishiro Seriwaza
-
-//
-
+	//
 
 
 
 
-//Archive:
-/*			motor[lb] = -100;
-motor[lf] = 100;
-motor[rb] = -100;
-motor[rf] = 100;
-wait1Msec(3000);
-motor[lb] = 0;
-motor [lf] = 0;
-motor[rb] = 0;
-motor[rf] = 0;
-motor[lows1] = -50;
-motor[lows2] = 50;
-motor[high1] = -50;
-motor[high2] = 50;
-wait1Msec(3000);
-motor[lows1] = 0;
-motor[lows2] = 0;
-motor[high1] = 0;
-motor[high2] = 0;
-motor[lb] = 35;
-motor[lf] = -35;
-motor[rb] = 65;
-motor[rf] = -65;
-wait1Msec(2000);
-motor[lows1] = 0;
-motor[lows2] = 0;
-motor[high1] = 0;
-motor[high2] = 0;
-motor[lb] = 90;
-motor[lf] = -90;
-motor[rb] = 90;
-motor[rf] = -90;
-wait1Msec(5000);
-motor[lb] = 0;
-motor[lf] = 0;
-motor[rb] = 0;
-motor[rf] = 0;
-motor[high1] = -50;
-motor[high2] = 50;
-motor[lows1] = 50;
-motor[lows2] = -50;
-wait1Msec(2000);
+
+	//Archive:
+	/*			motor[lb] = -100;
+	motor[lf] = 100;
+	motor[rb] = -100;
+	motor[rf] = 100;
+	wait1Msec(3000);
+	motor[lb] = 0;
+	motor [lf] = 0;
+	motor[rb] = 0;
+	motor[rf] = 0;
+	motor[lows1] = -50;
+	motor[lows2] = 50;
+	motor[high1] = -50;
+	motor[high2] = 50;
+	wait1Msec(3000);
+	motor[lows1] = 0;
+	motor[lows2] = 0;
+	motor[high1] = 0;
+	motor[high2] = 0;
+	motor[lb] = 35;
+	motor[lf] = -35;
+	motor[rb] = 65;
+	motor[rf] = -65;
+	wait1Msec(2000);
+	motor[lows1] = 0;
+	motor[lows2] = 0;
+	motor[high1] = 0;
+	motor[high2] = 0;
+	motor[lb] = 90;
+	motor[lf] = -90;
+	motor[rb] = 90;
+	motor[rf] = -90;
+	wait1Msec(5000);
+	motor[lb] = 0;
+	motor[lf] = 0;
+	motor[rb] = 0;
+	motor[rf] = 0;
+	motor[high1] = -50;
+	motor[high2] = 50;
+	motor[lows1] = 50;
+	motor[lows2] = -50;
+	wait1Msec(2000);
 
 
-Comp Auton
-//Auton Tester
-if (vexRT(Btn8U) == 1 && vexRT(Btn8D)==0)
-{
-//Forward
-motor[lb] = -65;
-motor[lf] = -65;
-motor[rb] = 60;
-motor[rf] = 60;
-wait1Msec(800);
-//right
-motor[lb] = -60;
-motor[lf] = -60;
-motor[rb] = -60;
-motor[rf] = -60;
-wait1Msec(600);
-//forward
-motor[lb] = -67;
-motor[lf] = -67;
-motor[rb] = 62;
-motor[rf] = 62;
-wait1Msec(2200);
-motor[lows1]=-127;
-motor[lows2]=127;
-//right
-motor[lb] = -60;
-motor[lf] = -60;
-motor[rb] = -60;
-motor[rf] = -60;
-wait1Msec(800);
-//forward
-motor[lb] = -30;
-motor[lf] = -30;
-motor[rb] = 25;
-motor[rf] = 25;
-wait1Msec(150);
-//drop
-motor[lows1] = 127;
-motor[lows2] = -127;
-wait1Msec(4000);
-//back
-motor[lb] = 50;
-motor[lf] = 50;
-motor[rb] = -45;
-motor[rf] = -45;
-wait1Msec(150);
-//stop
-motor[lb] = 0;
-motor[lf] = 0;
-motor[rb] = 0;
-motor[rf] = 0;
-motor[lows1] = 0;
-motor[lows2] = 0;
-wait1Msec(3000);
-}
+	Comp Auton
+	//Auton Tester
+	if (vexRT(Btn8U) == 1 && vexRT(Btn8D)==0)
+	{
+	//Forward
+	motor[lb] = -65;
+	motor[lf] = -65;
+	motor[rb] = 60;
+	motor[rf] = 60;
+	wait1Msec(800);
+	//right
+	motor[lb] = -60;
+	motor[lf] = -60;
+	motor[rb] = -60;
+	motor[rf] = -60;
+	wait1Msec(600);
+	//forward
+	motor[lb] = -67;
+	motor[lf] = -67;
+	motor[rb] = 62;
+	motor[rf] = 62;
+	wait1Msec(2200);
+	motor[lows1]=-127;
+	motor[lows2]=127;
+	//right
+	motor[lb] = -60;
+	motor[lf] = -60;
+	motor[rb] = -60;
+	motor[rf] = -60;
+	wait1Msec(800);
+	//forward
+	motor[lb] = -30;
+	motor[lf] = -30;
+	motor[rb] = 25;
+	motor[rf] = 25;
+	wait1Msec(150);
+	//drop
+	motor[lows1] = 127;
+	motor[lows2] = -127;
+	wait1Msec(4000);
+	//back
+	motor[lb] = 50;
+	motor[lf] = 50;
+	motor[rb] = -45;
+	motor[rf] = -45;
+	wait1Msec(150);
+	//stop
+	motor[lb] = 0;
+	motor[lf] = 0;
+	motor[rb] = 0;
+	motor[rf] = 0;
+	motor[lows1] = 0;
+	motor[lows2] = 0;
+	wait1Msec(3000);
+	}
 
-else
-{
-motor[lb] = 0;
-motor[lf] = 0;
-motor[rb] = 0;
-motor[rf] = 0;
-motor[lows1] = 0;
-motor[lows2] = 0;
-
-
-
-V2
-//Forward
-motor[lb] = -65;
-motor[lf] = -65;
-motor[rb] = 60;
-motor[rf] = 60;
-wait1Msec(800);
-//right
-motor[lb] = -60;
-motor[lf] = -60;
-motor[rb] = -60;
-motor[rf] = -60;
-wait1Msec(600);
-//forward
-motor[lb] = -67;
-motor[lf] = -67;
-motor[rb] = 62;
-motor[rf] = 62;
-wait1Msec(2200);
-motor[lows1]=-127;
-motor[lows2]=127;
-//right
-motor[lb] = -60;
-motor[lf] = -60;
-motor[rb] = -60;
-motor[rf] = -60;
-wait1Msec(800);
-//forward
-motor[lb] = -30;
-motor[lf] = -30;
-motor[rb] = 25;
-motor[rf] = 25;
-wait1Msec(150);
-//drop
-motor[lows1] = 127;
-motor[lows2] = -127;
-wait1Msec(4000);
-//back
-motor[lb] = 50;
-motor[lf] = 50;
-motor[rb] = -45;
-motor[rf] = -45;
-wait1Msec(225);
-//stop
-motor[lb] = 0;
-motor[lf] = 0;
-motor[rb] = 0;
-motor[rf] = 0;
-motor[lows1] = 0;
-motor[lows2] = 0;
-wait1Msec(3000);
+	else
+	{
+	motor[lb] = 0;
+	motor[lf] = 0;
+	motor[rb] = 0;
+	motor[rf] = 0;
+	motor[lows1] = 0;
+	motor[lows2] = 0;
 
 
 
-/* Courtesy of Ethan A. Collis, Circa 2019*/
+	V2
+	//Forward
+	motor[lb] = -65;
+	motor[lf] = -65;
+	motor[rb] = 60;
+	motor[rf] = 60;
+	wait1Msec(800);
+	//right
+	motor[lb] = -60;
+	motor[lf] = -60;
+	motor[rb] = -60;
+	motor[rf] = -60;
+	wait1Msec(600);
+	//forward
+	motor[lb] = -67;
+	motor[lf] = -67;
+	motor[rb] = 62;
+	motor[rf] = 62;
+	wait1Msec(2200);
+	motor[lows1]=-127;
+	motor[lows2]=127;
+	//right
+	motor[lb] = -60;
+	motor[lf] = -60;
+	motor[rb] = -60;
+	motor[rf] = -60;
+	wait1Msec(800);
+	//forward
+	motor[lb] = -30;
+	motor[lf] = -30;
+	motor[rb] = 25;
+	motor[rf] = 25;
+	wait1Msec(150);
+	//drop
+	motor[lows1] = 127;
+	motor[lows2] = -127;
+	wait1Msec(4000);
+	//back
+	motor[lb] = 50;
+	motor[lf] = 50;
+	motor[rb] = -45;
+	motor[rf] = -45;
+	wait1Msec(225);
+	//stop
+	motor[lb] = 0;
+	motor[lf] = 0;
+	motor[rb] = 0;
+	motor[rf] = 0;
+	motor[lows1] = 0;
+	motor[lows2] = 0;
+	wait1Msec(3000);
+
+
+
+	/* Courtesy of Ethan A. Collis, Circa 2019*/
