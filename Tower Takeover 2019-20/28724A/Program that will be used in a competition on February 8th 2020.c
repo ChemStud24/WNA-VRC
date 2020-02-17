@@ -58,14 +58,14 @@ void pre_auton()
 
 task autonomous()
 {
-	//Motors drive forwards.
+	//Motors drive back.
 	motor[lf] = -127;
 	motor[lb] = -127;
 	motor[rb] = 127;
 	motor[rf] = 127;
 	wait1Msec(2000);
 
-	//Motors drive back.
+	//Motors drive forward.
 	motor[lb] = 110;
 	motor[lf] = 110;
 	motor[rf] = -110;
@@ -114,7 +114,7 @@ task usercontrol()
 			motor[c1l] = 63;
 			motor[c2r] = -63;
 		}
-		else if (vexRT[Btn7D] == 1 && vexRT(Btn7U) == 0)
+		else if (vexRT[Btn7D] == 1 && vexRT(Btn7U) ==0)
 		{
 			//down
 			motor[c1l] = -63;
@@ -132,13 +132,13 @@ task usercontrol()
 		if (vexRT(Btn6U) == 1 && vexRT(Btn5U)==0)
 		{
 			//Up
-			motor[lift] = 63;
+			motor[lift] = 75;
 
 		}
 		else if (vexRT[Btn5U] == 1 && vexRT(Btn6D) == 0)
 		{
 			//Down
-			motor[lift] = -63;
+			motor[lift] = -75;
 
 		}
 		else
