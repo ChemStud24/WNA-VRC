@@ -1,3 +1,12 @@
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Controller1          controller                    
+// Liftmotor            motor         7               
+// Collectorleft        motor         5               
+// Drivetrain           drivetrain    1, 2            
+// Collectorright       motor         6               
+// ---- END VEXCODE CONFIGURED DEVICES ----
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
@@ -58,8 +67,9 @@ void autonomous(void) {
   
   Drivetrain.setDriveVelocity(100, vex::velocityUnits::pct);
   Drivetrain.driveFor(forward,7,inches,true);
-  Drivetrain.driveFor(reverse,6,inches,true);
+  Drivetrain.driveFor(reverse,10,inches,true);
   task:: sleep(6);
+
 
 }
 
